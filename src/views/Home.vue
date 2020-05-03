@@ -1,56 +1,21 @@
 <template>
   <div class="home" @contextmenu.prevent="rightPointEvent">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <div>
-      <p class="MsoNormal" style="line-height:18.0pt;word-break:break-all">
-        <span
-          lang="EN-US"
-          style="font-size:9.0pt;font-family:&quot;微软雅黑&quot;,sans-serif;
-        color:#333333"
-        >1</span>
-        <span
-          style="font-size:9.0pt;font-family:&quot;微软雅黑&quot;,sans-serif;
-        color:#333333"
-        >
-          、活泼开朗，思维活跃，喜欢富有激情的工作；
-          <span lang="EN-US">
-            <br />2
-          </span>、工作热情，对业务有良好的理解分析能力；
-          <span lang="EN-US">
-            <br />3
-          </span>、良好的沟通和组织协调能力，与上下级友好共事；
-          <span lang="EN-US">
-            <br />4
-          </span>、项目中可以从零开始开展测试相关工作及团队组建；
-          <span lang="EN-US">
-            <br />5
-          </span>、产品测试中遇到相关质量问题可快速调整解决方案；
-        </span>
-      </p>
-      <textarea type="text" v-model="selectText" @focus="setActiveKey('selectText')" />
-      <textarea
-        type="text"
-        v-model="selectText1"
-        @focus="setActiveKey('selectText1')"
-        @dblclick="matchText(selectText1)"
-      />
-      <input type="file" @change="selectFile" name="file" id="file" />
-    </div>
-    <div v-html="inputHtml"></div>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+    <rule-tree></rule-tree>
     <!-- home commit -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import RuleTree from '@/components/RuleTree/RuleTree.vue'
 import mammoth from 'mammoth'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    RuleTree
   },
   data() {
     return {
