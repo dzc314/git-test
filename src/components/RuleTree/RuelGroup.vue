@@ -14,12 +14,16 @@
     </div>
     <div class="rule-nodes">
       <div v-for="(item, index) in node.nodes" :key="index">
-        <rule-group v-if="item.nodes" :node="item" @delete-group="removeNode(index)"></rule-group>
+        <rule-group
+          v-if="item.nodes"
+          :node="item"
+          @delete-group="removeNode(index)"
+        ></rule-group>
         <rule-node v-else :node="item" @delete-node="removeNode(index)"></rule-node>
       </div>
       <div class="rule-group-handle">
-        <el-button icon="el-icon-plus"></el-button>
-        <el-button icon="el-icon-circle-plus-outline"></el-button>
+        <el-button icon="el-icon-plus" @click="createNode('node')"></el-button>
+        <el-button icon="el-icon-circle-plus-outline" @click="createNode('group')"></el-button>
         <el-button icon="el-icon-delete" v-show="!node.isRoot" @click="deleteGroup"></el-button>
       </div>
     </div>
@@ -61,6 +65,33 @@ export default {
     },
     deleteGroup() {
       this.$emit('delete-group')
+    },
+    addRuleChild(type) {
+      console.log(type)
+      this.$emit('add-node', type)
+    },
+    createNode(type) {
+      console.log(type)
+      let node = {}
+      if (type === 'node') {
+        node = {
+          nodeRule: {
+            value: 1.1
+          }
+        }
+      } else {
+        node = {
+          ruleMatch: 2,
+          nodes: [
+            {
+              nodeRule: {
+                value: 2.1
+              }
+            }
+          ]
+        }
+      }
+      this.node.nodes.push(node)
     }
   }
 }
